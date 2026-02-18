@@ -1,5 +1,5 @@
 ### 1. Where are they stored? 
-The method to which structs, arrays and mappings are stored depends on whether they are called as **state** or **local**.**variables**
+The method to which structs, arrays and mappings are stored depends on whether they are called as **state** or **local** **variables**
 
 **Storage:** When a struct or array is declared outside a function which is called a state variables, they are stored on the blockchain, while mappings are permanently stored on the blockchain because they are not stored contigiously instead each key value pair is stored at a location computed using the keccak256 hash of the key and the mapping position in storage. Data stored in storage costs gas and is permanently stored on the blockchain.
 
