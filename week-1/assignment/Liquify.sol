@@ -54,41 +54,65 @@ contract LiquifyToken {
     }
 
     function transferFrom(address from, address to, uint256 amount) public returns (bool) {
+
         uint256 currentAllowance = _allowances[from][msg.sender];
+        
         require(currentAllowance >= amount, "Insufficient allowance");
+        
         _approve(from, msg.sender, currentAllowance - amount);
+        
         _transfer(from, to, amount);
+        
         return true;
     }
 
     function _transfer(address from, address to, uint256 amount) internal {
+        
         require(from != address(0), "Invalid from address");
+        
         require(to != address(0), "Invalid to address");
+        
         require(_balances[from] >= amount, "Insufficient balance");
+        
         _balances[from] -= amount;
+        
         _balances[to] += amount;
+        
         emit Transfer(from, to, amount);
     }
 
     function _approve(address owner, address spender, uint256 amount) internal {
+        
         require(owner != address(0), "Invalid owner");
+        
         require(spender != address(0), "Invalid spender");
+        
         _allowances[owner][spender] = amount;
+        
         emit Approval(owner, spender, amount);
     }
 
     function _mint(address to, uint256 amount) internal {
+        
         require(to != address(0), "Invalid address");
+        
         _totalSupply += amount;
+        
         _balances[to] += amount;
+        
         emit Transfer(address(0), to, amount);
     }
 
     function _burn(address account, uint256 amount) internal {
+        
         require(account != address(0), "Invalid address");
+        
         require(_balances[account] >= amount, "Insufficient balance");
+        
         _balances[account] -= amount;
+        
         _totalSupply -= amount;
+        
         emit Transfer(account, address(0), amount);
     }
 }
